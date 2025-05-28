@@ -23,6 +23,10 @@ export class InvestisseursService {
     return this.repo.find({ where: { project: { id: projectId } }, relations: ['investor'] });
   }
 
+  findAll(): Promise<Investisseur[]> {
+    return this.repo.find({ relations: ['investor', 'project'] });
+  }
+
   async remove(id: string, userId: string): Promise<any> {
     const inv = await this.repo.findOne({ where: { id }, relations: ['investor'] });
     if (!inv || inv.investor.id !== userId) throw new NotFoundException('Not found');

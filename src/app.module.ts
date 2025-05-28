@@ -7,7 +7,7 @@ import { UsersModule } from './users/users.module';
 import { ProjetModule } from './projets/projets.module';
 import { EntrepreneurModule } from './entrepreneurs/entrepreneurs.module';
 import { InvestisseursModule } from './investisseurs/investisseurs.module';
-// import { AdminModule } from './admin/admin.module';
+import { AdminModule } from './admin/admin.module';
 
 import { User } from './users/users.entity';
 import { Projet } from './projets/projets.entity';
@@ -30,9 +30,9 @@ console.log(ConfigModule)
         type: 'mysql',
         host: config.get<string>('DB_HOST'),
         port: config.get<number>('DB_PORT'),
-        username: config.get<string>('DB_USERNAME'),
+        username: config.get<string>('DB_USER'),
         password: config.get<string>('DB_PASSWORD'),
-        database: config.get<string>('DB_DATABASE'),
+        database: config.get<string>('DB_NAME'),
         entities: [User, Projet, Entrepreneur, UserEntrepreneur, Investisseur],
         synchronize: true, // À désactiver en production
       }),
@@ -45,7 +45,7 @@ console.log(ConfigModule)
     ProjetModule,
     EntrepreneurModule,
     InvestisseursModule,
-    // AdminModule,
+    AdminModule,
   ],
 })
 export class AppModule {}
